@@ -56,6 +56,11 @@
                             @Html.ValidationMessageFor(x=>x.WriterImage,"",new{@class="text-danger"})
                             @*<input type="text" class="form-control" id="validationDefault01" placeholder="" required="" name="WriterImage">*@
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom01">Şehir</label>
+                            @Html.DropDownListFor(x=>x.CityID,(List<SelectListItem>)ViewBag.ValueCity,new{@class="form-control"})
+
+                        </div>
 
                     </div>
 

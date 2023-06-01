@@ -1,18 +1,32 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using CoreDemo.Models;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreDemo.Controllers
 {
 	public class RegisterController : Controller
 	{
+	
 		WriterManager _writerManager = new WriterManager(new EfWriterRepository());
+		CityManager _cityManager =new CityManager(new EfCityRepository());
+
 		[HttpGet]
 		public IActionResult Index()
 		{
+			List<SelectListItem> valueCity = (from x in _cityManager.GetList()
+											  select new SelectListItem
+											  {
+												  Text = x.CityName,
+												  Value = x.CityID.ToString()
+											  }).ToList();
+			ViewBag.ValueCity = valueCity;
 			return View();
 		}
 		[HttpPost]
