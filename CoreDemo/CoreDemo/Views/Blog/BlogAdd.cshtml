@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.Blog
+
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+<h1>Yeni Blog Girişi</h1>
+
+
+@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
+{
+
+    @Html.Label("Blog Başlığı")
+    @Html.TextBoxFor(x=>x.BlogTitle,new{@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.BlogTitle,"",new{@class="badge badge-danger"})
+    <br />
+
+    @Html.Label("Blog Görseli")
+    @Html.TextBoxFor(x=>x.BlogImage,new{@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.BlogImage,"",new{@class="badge badge-danger"})
+    <br />
+
+    @Html.Label("Blog Küçük Görseli")
+    @Html.TextBoxFor(x=>x.BlogThumbnailImage,new{@class="form-control"})
+    <br />
+
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.categoryValues,new{@class="form-control"})
+    <br />
+
+    @Html.Label("Blog İçeriği")
+    @Html.TextAreaFor(x=>x.BlogContent,3,10,new{@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.BlogContent,"",new{@class="badge badge-danger"})
+    <br />
+
+    <button class="btn btn-gradient-danger float-md-right">Blog Ekle</button>
+
+
+}
+
+
+

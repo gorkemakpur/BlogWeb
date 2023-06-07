@@ -4,6 +4,7 @@ using CoreDemo.Models;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ using System.Linq;
 
 namespace CoreDemo.Controllers
 {
-	public class RegisterController : Controller
+    [AllowAnonymous]
+    public class RegisterController : Controller
 	{
 	
 		WriterManager _writerManager = new WriterManager(new EfWriterRepository());
